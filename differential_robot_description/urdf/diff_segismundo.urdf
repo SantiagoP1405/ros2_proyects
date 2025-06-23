@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<robot name="diff_segismundo">
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="0.2 0.1 0.05"/>
+            </geometry>
+        </visual>
+    </link>
+</robot>
