@@ -9,7 +9,7 @@ def generate_launch_description():
     
     urdf_path = os.path.join(get_package_share_path('differential_robot_description'),
         'urdf',
-        'diff_segismundo.urdf'
+        'diff_segismundo.urdf.xacro'
     )
 
     rviz_path = os.path.join(get_package_share_path('differential_robot_description'),

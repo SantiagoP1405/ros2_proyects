@@ -1,54 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot name="diff_segismundo">
 
-    <material name="blue">
-        <color rgba="0.0 0.0 1.0 1.0"/>
-    </material>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:property name="base_length" value="0.6"/>
+    <xacro:property name="base_width" value="${base_length * (2/3)}"/>
+    <xacro:property name="base_height" value="${base_length / 3}"/>
+    <xacro:property name="wheel_radius" value="${base_length / 6}"/>
+    <xacro:property name="wheel_length" value="${wheel_radius / 2}"/>
 
-    <material name="grey">
-        <color rgba="0.5 0.5 0.5 1.0"/>
-    </material>
-
-    <material name="black">
-        <color rgba="0.0 0.0 0.0 1.0"/>
-    </material>
+    <xacro:macro name="wheel_link" params="prefix radius length">
+        <link name="${prefix}_wheel_link">
+        <visual>
+            <geometry>
+                <cylinder radius="${radius}" length="${length}"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="${pi / 2.0} 0.0 0.0"/>
+            <material name="grey"/>
+        </visual>
+    </link>
+    </xacro:macro>
 
     <link name="base_footprint"></link>
 
     <link name="base_link">
         <visual>
             <geometry>
-                <box size="0.6 0.4 0.2"/>
+                <box size="${base_length} ${base_width} ${base_height}"/>
             </geometry>
-            <origin xyz="0.0 0.0 0.1" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 ${wheel_radius}" rpy="0.0 0.0 0.0"/>
             <material name="blue"/>
         </visual>
     </link>
 
-    <link name="right_wheel_link">
+    <!-- <link name="right_wheel_link">
         <visual>
             <geometry>
-                <cylinder radius="0.1" length="0.05"/>
+                <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
             </geometry>
-            <origin xyz="0.0 0.0 0.0" rpy="1.57 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="${pi / 2.0} 0.0 0.0"/>
             <material name="grey"/>
         </visual>
-    </link>
+    </link> -->
 
-    <link name="left_wheel_link">
+    <xacro:wheel_link prefix="right" radius="${wheel_radius}" length="${wheel_length}"/>
+    <xacro:wheel_link prefix="left" radius="${wheel_radius}" length="${wheel_length}"/>
+
+    <!-- <link name="left_wheel_link">
         <visual>
             <geometry>
-                <cylinder radius="0.1" length="0.05"/>
+                <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
             </geometry>
-            <origin xyz="0.0 0.0 0.0" rpy="1.57 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="${pi / 2.0} 0.0 0.0"/>
             <material name="grey"/>
         </visual>
-    </link>
+    </link> -->
 
     <link name="caster_wheel_link">
         <visual>
             <geometry>
-                <sphere radius="0.05"/>
+                <sphere radius="${wheel_radius / 2}"/>
             </geometry>
             <origin xyz="0.0 0.0 0.0" rpy="0 0.0 0.0"/>
             <material name="grey"/>
@@ -59,28 +68,28 @@
     <joint name="footprint_to_base_joint" type="fixed">
         <parent link="base_footprint"/>
         <child link="base_link"/>
-        <origin xyz="0.0 0.0 0.1" rpy="0.0 0.0 0.0"/>
+        <origin xyz="0.0 0.0 ${wheel_radius}" rpy="0.0 0.0 0.0"/>
 
     </joint>
 
     <joint name="base_to_right_wheel" type="continuous">
         <parent link="base_link"/>
         <child link="right_wheel_link"/>
-        <origin xyz="-0.15 -0.225 0.0" rpy="0.0 0.0 0.0"/>
+        <origin xyz="${-base_length / 4} -0.225 0.0" rpy="0.0 0.0 0.0"/>
         <axis xyz="0.0 1.0 0.0"/>
     </joint>
 
     <joint name="base_to_left_wheel" type="continuous">
         <parent link="base_link"/>
         <child link="left_wheel_link"/>
-        <origin xyz="-0.15 0.225 0.0" rpy="0.0 0.0 0.0"/>
+        <origin xyz="${-base_length / 4} 0.225 0.0" rpy="0.0 0.0 0.0"/>
         <axis xyz="0.0 1.0 0.0"/>
     </joint>
 
     <joint name="base_to_caster_wheel" type="continuous">
         <parent link="base_link"/>
         <child link="caster_wheel_link"/>
-        <origin xyz="0.2 0.0 -0.05" rpy="0.0 0.0 0.0"/>
+        <origin xyz="${base_length / 3} 0.0 -0.05" rpy="0.0 0.0 0.0"/>
         <axis xyz="0.0 1.0 0.0"/>
     </joint>
 
@@ -110,8 +119,7 @@
         <child link="second_link"/>
         <origin xyz="0.0 0.0 0.2" rpy="0.0 0.0 0.0"/>
     </joint>
-    -->
-<!-- 
+
     <joint name="base_to_second_joint" type="revolute">
         <parent link="base_link"/>
         <child link="second_link"/>
@@ -120,8 +128,8 @@
         <axis xyz="0.0 0.0 1.0"/>
         
     </joint>
-    -->
-    <!-- <joint name="base_to_second_joint" type="continuous">
+    
+    <joint name="base_to_second_joint" type="continuous">
         <parent link="base_link"/>
         <child link="second_link"/>
         <origin xyz="0.0 0.0 0.2" rpy="0.0 0.0 0.0"/>
@@ -135,5 +143,4 @@
         <limit lower="0.0" upper="0.2" effort="10.0" velocity="0.05"/>
         <axis xyz="1.0 0.0 0.0"/>
     </joint>  -->
-
 </robot>
