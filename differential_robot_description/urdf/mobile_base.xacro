@@ -106,7 +106,7 @@
         <axis xyz="0.0 1.0 0.0"/>
     </joint>
 
-    <joint name="base_to_caster_wheel" type="continuous">
+    <joint name="base_to_caster_wheel" type="fixed">
         <parent link="base_link"/>
         <child link="caster_wheel_link"/>
         <origin xyz="${base_length / 3} 0.0 -0.05" rpy="0.0 0.0 0.0"/>
