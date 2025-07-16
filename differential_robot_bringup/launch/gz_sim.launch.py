@@ -23,6 +23,10 @@ def generate_launch_description():
     gz_bridge_config_path = os.path.join(get_package_share_path('differential_robot_bringup'),
         'config',
         'gz_bridge.yaml')
+    
+    gz_world_path = os.path.join(get_package_share_path('differential_robot_bringup'),
+        'worlds',
+        'first_world.sdf')
 
     robot_description = ParameterValue(Command(['xacro ', urdf_path]), value_type=str)
     robot_state_publisher_node = Node(
@@ -35,7 +39,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource([
             gz_launch_path,
             "/gz_sim.launch.py"
-        ]), launch_arguments={'gz_args' : 'empty.sdf -r'}.items()
+        ]), launch_arguments={'gz_args' : f'{gz_world_path} -r'}.items()
     )
 
     spawn_robot_node = Node(
