@@ -12,6 +12,16 @@
     <material name="black">
         <color rgba="0.0 .0 0.0 1.0"/>
     </material>
+    <material name="aquagreen" >
+        <color rgba="0.07058823529411765 0.8823529411764706 0.5764705882352941 1.0" />
+    </material>
+    <material name="amber" >
+        <color rgba="0.996078431372549 0.7019607843137254 0.03137254901960784 1.0" />
+    </material>
+    <material name="bluegrey" >
+        <color rgba="0.5215686274509804 0.6392156862745098 0.6980392156862745 1.0" />
+    </material>
+  
 
     <xacro:macro name="box_inertia" params="l w h m o_xyz o_rpy">
       <inertial>
