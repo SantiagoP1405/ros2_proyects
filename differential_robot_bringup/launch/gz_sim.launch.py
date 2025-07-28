@@ -26,7 +26,7 @@ def generate_launch_description():
 
     gz_world_path = os.path.join(get_package_share_path('differential_robot_bringup'),
         'worlds',
-        'track_world.sdf')
+        'second_world.sdf')
 
 
     robot_description = ParameterValue(Command(['xacro ', urdf_path]), value_type=str)
@@ -53,6 +53,7 @@ def generate_launch_description():
         package="rviz2",
         executable="rviz2",
         arguments=['-d', rviz_path],
+        parameters=[{'use_sim_time': True}]
     )
 
     gz_bridge_node = Node(
