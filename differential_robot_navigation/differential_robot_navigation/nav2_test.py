@@ -1,8 +1,35 @@
 import rclpy # type: ignore
+from rclpy.node import Node  # type: ignore
 from nav2_simple_commander.robot_navigator import BasicNavigator # type: ignore
-from geometry_msgs.msg import PoseStamped # type: ignore
+from geometry_msgs.msg import PoseStamped, PointStamped # type: ignore
 import tf_transformations # type: ignore
 import numpy as np # type: ignore
+
+class PublishPoint(Node):
+    def __init__(self):
+        super().__init__('publish_point_node')
+        self.nav = BasicNavigator()
+        self.subscription = self.create_subscription(
+            PointStamped,
+            '/clicked_point', 
+            self.objective_point_callback,
+            10)
+        initial_pose = create_pose_stamped(self.nav, 0., 0., 0.)
+        self.nav.setInitialPose(initial_pose)
+        self.nav.waitUntilNav2Active()
+        
+        self.get_logger().info('Posición inicial establecida. Establezca posición objetivo.')  # Publica cada segundo
+
+    def objective_point_callback(self, msg: PointStamped):
+
+        goal_pose = create_pose_stamped(self.nav, msg.point.x, msg.point.y, 0.0)
+        self.nav.goToPose(goal_pose)
+        while not self.nav.isTaskComplete():
+            feedback = self.nav.getFeedback()
+            self.nav.get_logger().info(f"x: {feedback.current_pose.pose.position.x}, y: {feedback.current_pose.pose.position.y}, Orientation: {feedback.current_pose.pose.orientation.z}, Distance remaining: {feedback.distance_remaining:.2f} m")
+        result = self.nav.getResult()
+        self.nav.get_logger().info(f"Navigation result: {result}")
+    
 
 def create_pose_stamped(navigator:BasicNavigator, x:float, y:float, q_z:float) -> PoseStamped:
     q_x, q_y, q_z, q_w = tf_transformations.quaternion_from_euler(0.0, 0.0, np.deg2rad(q_z)) # type: ignore
@@ -22,27 +49,9 @@ def create_pose_stamped(navigator:BasicNavigator, x:float, y:float, q_z:float) -
 def main():
     # --- Init
     rclpy.init()
-    nav = BasicNavigator()
-
-    # --- Set initial pose
-    initial_pose = create_pose_stamped(nav, 0., 0., 0.)
-
-    nav.setInitialPose(initial_pose)
-
-    # --- Wait for Nav2
-    nav.waitUntilNav2Active()
-
-    goal_pose = create_pose_stamped(nav, 3.5, -1.5, 135.0)
-    nav.goToPose(goal_pose)
-
-    while not nav.isTaskComplete():
-        feedback = nav.getFeedback()
-        nav.get_logger().info(f"x: {feedback.current_pose.pose.position.x}, y: {feedback.current_pose.pose.position.y}, Orientation: {feedback.current_pose.pose.orientation.z}, Distance remaining: {feedback.distance_remaining:.2f} m")
-
-    result = nav.getResult()  # Get the result of the navigation task
-    nav.get_logger().info(f"Navigation result: {result}")
-
-    # --- Shutdown
+    node = PublishPoint()
+    rclpy.spin(node)
+    node.destroy_node()
     rclpy.shutdown()
 
 if __name__ == '__main__':
