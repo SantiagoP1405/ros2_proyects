@@ -27,6 +27,18 @@ def generate_launch_description():
     gz_world_path = os.path.join(get_package_share_path('differential_robot_bringup'),
         'worlds',
         'second_world.sdf')
+    
+    nav2_bringup_launch_path = os.path.join(
+        get_package_share_directory('nav2_bringup'),
+        'launch',
+        'bringup_launch.py'
+    )
+
+    map_path = os.path.join(
+        get_package_share_directory('differential_robot_bringup'),
+        'maps',
+        'my_map_1.yaml'
+    )
 
 
     robot_description = ParameterValue(Command(['xacro ', urdf_path]), value_type=str)
@@ -61,10 +73,26 @@ def generate_launch_description():
         executable="parameter_bridge",
         parameters=[{'config_file' : gz_bridge_config_path}]
     )
+
+    nav2_test_node = Node(
+        package="differential_robot_navigation",
+        executable="nav2_test"
+    )
+    
+    nav2_bringup_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(nav2_bringup_launch_path),
+        launch_arguments={
+            'use_sim_time': 'True',
+            'map': map_path
+        }.items()
+    )
+
     return LaunchDescription([
+        nav2_test_node,
         robot_state_publisher_node,
         gz_sim_launch_path,
         spawn_robot_node,
         rviz2_node,
-        gz_bridge_node
+        gz_bridge_node,
+        nav2_bringup_launch
     ])
