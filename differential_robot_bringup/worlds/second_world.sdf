@@ -67,17 +67,17 @@
       <self_collide>false</self_collide>
     </model>
     <include>
-      <uri>file:///home/santiago_gomez/.gz/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
+      <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
       <name>grey_wall</name>
       <pose>1.3527649534950186 4.3236223131987996 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/santiago_gomez/.gz/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
+      <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
       <name>grey_wall_0</name>
       <pose>4.9824271202087402 0.1136758103966713 0 0 0 1.5700000042340219</pose>
     </include>
     <include>
-      <uri>file:///home/santiago_gomez/.gz/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
+      <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
       <name>grey_wall_1</name>
       <pose>1.3242742739311177 -4.0105704319935578 0 0 0 0</pose>
     </include>
@@ -176,7 +176,7 @@
       <self_collide>false</self_collide>
     </model>
     <include>
-      <uri>file:///home/santiago_gomez/.gz/fuel/fuel.gazebosim.org/openrobotics/models/office chair/1</uri>
+      <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/office chair/1</uri>
       <name>OfficeChair</name>
       <pose>2.164654288894706 -2.6998711053234805 0 0 0 0</pose>
     </include>
