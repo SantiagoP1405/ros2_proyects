@@ -20,7 +20,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'hera_nav2 = hera_robot_navigation.hera_nav2:main'
+            'hera_nav2 = hera_robot_navigation.hera_nav2:main',
+            'patrol_voice_detector = hera_robot_navigation.patrol_voice_detector:main',
+            'set_initial_pose = hera_robot_navigation.set_initial_pose:main',
         ],
     },
 )

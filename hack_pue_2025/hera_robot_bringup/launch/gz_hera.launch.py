@@ -80,10 +80,21 @@ def generate_launch_description():
         parameters=[{'config_file' : gz_bridge_config_path}]
     )
 
+    # nav2_test_node = Node(
+    #     package="hera_robot_navigation",
+    #     executable="hera_nav2",
+    # )
+
+    set_initial_pose_node = Node(
+        package="hera_robot_navigation",
+        executable="set_initial_pose",
+    )
+
     nav2_test_node = Node(
         package="hera_robot_navigation",
-        executable="hera_nav2",
+        executable="patrol_voice_detector",
     )
+
 
     nav2_bringup_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(nav2_bringup_launch_path),
@@ -95,6 +106,7 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        set_initial_pose_node,
         nav2_test_node,
         robot_state_publisher_node,
         gz_sim_launch_path,
