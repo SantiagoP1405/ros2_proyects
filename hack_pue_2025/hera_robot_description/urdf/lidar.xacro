@@ -10,7 +10,7 @@
             <geometry>
                 <cylinder radius="${lidar_radius}" length="${lidar_length}"/>
             </geometry>
-            <material name="bluegrey"/>
+            <material name="polynesian_blue"/>
         </visual>
         <collision>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
@@ -54,9 +54,6 @@
                     <stddev>0.01</stddev>
                 </noise>
             </lidar>
-            <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
-                <render_engine>ogre2</render_engine>
-            </plugin>
         </sensor>
         
     </gazebo>
