@@ -69,52 +69,7 @@
     <include>
       <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
       <name>grey_wall</name>
-      <pose>0.51654 4.83091 0 0 -0 0</pose>
-    </include>
-    <include>
-      <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/foldable_chair/3</uri>
-      <name>foldable_chair</name>
-      <pose>-0.030006 2.96092 0 0 -0 0</pose>
-    </include>
-    <include>
-      <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/desk/2</uri>
-      <name>Desk</name>
-      <pose>-0.021724 2.40093 0.000359 -0.000136 0.002084 1.57194</pose>
-    </include>
-    <include>
-      <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/foldable_chair/3</uri>
-      <name>foldable_chair_1</name>
-      <pose>1.14393 2.98122 0 0 -0 0</pose>
-    </include>
-    <include>
-      <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/desk/2</uri>
-      <name>Desk_1</name>
-      <pose>1.12085 2.40212 -0 0 -0 1.5708</pose>
-    </include>
-    <include>
-      <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/foldable_chair/3</uri>
-      <name>foldable_chair_1_1</name>
-      <pose>2.27809 3.01039 0 0 -0 0</pose>
-    </include>
-    <include>
-      <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/desk/2</uri>
-      <name>Desk_1_1</name>
-      <pose>2.25565 2.40924 -0 0 -0 1.5708</pose>
-    </include>
-    <include>
-      <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/foldable_chair/3</uri>
-      <name>foldable_chair_2</name>
-      <pose>-1.06381 2.9948 0 0 -0 0</pose>
-    </include>
-    <include>
-      <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/desk/2</uri>
-      <name>Desk_2</name>
-      <pose>-0.024232 2.40121 0.000441 0.000995 -0.000324 1.56907</pose>
-    </include>
-    <include>
-      <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/desk/2</uri>
-      <name>Desk_3</name>
-      <pose>-1.12362 2.37933 -1e-06 -0 1e-06 1.57083</pose>
+      <pose>0.51654 2.08605 0 0 -0 0</pose>
     </include>
     <include>
       <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/foldable_chair/3</uri>
@@ -124,7 +79,7 @@
     <include>
       <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/desk/2</uri>
       <name>Desk_3_1</name>
-      <pose>-1.05746 -0.296192 -0 0 0 1.57083</pose>
+      <pose>-1.05746 -0.296192 -0 0 -0 1.57083</pose>
     </include>
     <include>
       <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/foldable_chair/3</uri>
@@ -134,7 +89,7 @@
     <include>
       <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/desk/2</uri>
       <name>Desk_3_1_1</name>
-      <pose>-0.038089 -0.280623 0.002998 -0.007862 6e-06 1.56332</pose>
+      <pose>-0.038077 -0.280623 -1e-06 -1e-06 -1e-06 1.56332</pose>
     </include>
     <include>
       <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/foldable_chair/3</uri>
@@ -154,7 +109,7 @@
     <include>
       <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/desk/2</uri>
       <name>Desk_3_1_1_1_1</name>
-      <pose>2.15998 -0.198167 -1e-06 0 -3e-06 1.5704</pose>
+      <pose>2.14253 -0.16581 -0 0 0 1.54322</pose>
     </include>
     <include>
       <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/foldable_chair/3</uri>
@@ -214,7 +169,7 @@
     <include>
       <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/foldable_chair/3</uri>
       <name>foldable_chair_2_1_4_1_1</name>
-      <pose>-0.261116 -5.37415 0 0 0 -3.14159</pose>
+      <pose>-0.261116 -5.37415 0 0 -0 -3.14159</pose>
     </include>
     <include>
       <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
@@ -222,14 +177,9 @@
       <pose>4.46305 -2.1558 0 0 -0 1.57083</pose>
     </include>
     <include>
-      <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
-      <name>grey_wall_2_2</name>
-      <pose>-3.50045 5.59186 0 0 -0 1.57083</pose>
-    </include>
-    <include>
-      <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
-      <name>grey_wall_2_2_1</name>
-      <pose>4.43268 5.54038 0 0 -0 1.57083</pose>
+      <uri>file:///home/santiago_gomez/.ignition/fuel/fuel.gazebosim.org/openrobotics/models/malevisitoronphone/2</uri>
+      <name>MaleVisitorOnPhone</name>
+      <pose>1.46868 -4.9524 0 0 -0 2.27501</pose>
     </include>
     <light name='sun' type='directional'>
       <pose>0 0 10 0 -0 0</pose>
