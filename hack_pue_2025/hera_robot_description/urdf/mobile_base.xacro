@@ -19,7 +19,8 @@
             </visual>
             <collision>
                 <geometry>
-                    <sphere radius="${wheel_radius}"/>
+                    <!-- <sphere radius="${wheel_radius}"/> -->
+                    <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
                 </geometry>
                 <origin xyz="0.0 0.0 0.0" rpy="${pi / 2.0} 0.0 0.0"/>
             </collision>
