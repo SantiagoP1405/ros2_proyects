@@ -88,11 +88,11 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        nav2_test_node,
         robot_state_publisher_node,
         gz_sim_launch_path,
         spawn_robot_node,
-        rviz2_node,
         gz_bridge_node,
+        nav2_test_node,
+        rviz2_node,
         nav2_bringup_launch
     ])
