@@ -363,6 +363,13 @@
       <name>grey_wall_1_1</name>
       <pose>9.66334 0.013485 0 0 -0 1.57</pose>
     </include>
+    
+    <!-- <include>
+      <uri>model://x500_lidar_2d</uri>
+      <name>x500_0</name>
+      <pose>0 0 0 0 0 0</pose>
+    </include> -->
+
     <model name='box_5'>
       <pose>7.60744 1.50251 0.5 0 -0 0</pose>
       <link name='box_link'>
