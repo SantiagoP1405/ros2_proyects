@@ -8,7 +8,7 @@ import os
 from ament_index_python.packages import get_package_share_path, get_package_share_directory # type: ignore
 
 def generate_launch_description():
-    gz_launch_path = os.path.join(get_package_share_directory('ros_ign_gazebo'), 'launch')
+    gz_launch_path = os.path.join(get_package_share_directory('ros_gz_sim'), 'launch')
     
     urdf_path = os.path.join(get_package_share_path('greenhouse_robot_description'),
         'urdf',
@@ -51,7 +51,7 @@ def generate_launch_description():
     gz_sim_launch_path = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             gz_launch_path,
-            "/ign_gazebo.launch.py"
+            "/gz_sim.launch.py"
         ]), launch_arguments={'gz_args' : f'{gz_world_path} -r'}.items()
     )
 
@@ -63,7 +63,7 @@ def generate_launch_description():
     # )
 
     spawn_robot_node = Node(
-        package="ros_ign_gazebo",
+        package="ros_gz_sim",
         executable="create",
         arguments=['-topic', '/robot_description']
     )
