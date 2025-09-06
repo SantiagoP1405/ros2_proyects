@@ -1,4 +1,6 @@
 from setuptools import find_packages, setup
+import os
+from glob import glob
 
 package_name = 'greenhouse_robot_navigation'
 
@@ -10,6 +12,8 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        (os.path.join('share', package_name, 'params'), 
+         glob('params/*.yaml')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -20,7 +24,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'nav2_test = greenhouse_robot_navigation.nav2_test:main'
+            'nav2_test = greenhouse_robot_navigation.nav2_test:main',
+            'routine_test = greenhouse_robot_navigation.routine_test:main',
         ],
     },
 )

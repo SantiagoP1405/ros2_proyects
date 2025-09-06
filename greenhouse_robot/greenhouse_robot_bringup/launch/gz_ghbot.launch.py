@@ -86,9 +86,14 @@ def generate_launch_description():
         parameters=[{'config_file' : gz_bridge_config_path}]
     )
 
+    # nav2_test_node = Node(
+    #     package="greenhouse_robot_navigation",
+    #     executable="nav2_test"
+    # )
+
     nav2_test_node = Node(
         package="greenhouse_robot_navigation",
-        executable="nav2_test"
+        executable="routine_test"
     )
     
     nav2_bringup_launch = IncludeLaunchDescription(
