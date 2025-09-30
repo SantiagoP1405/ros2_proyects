@@ -8,7 +8,7 @@ import os
 from ament_index_python.packages import get_package_share_path, get_package_share_directory # type: ignore
 
 def generate_launch_description():
-    gz_launch_path = os.path.join(get_package_share_directory('ros_ign_gazebo'), 'launch')
+    gz_launch_path = os.path.join(get_package_share_directory('ros_gz_sim'), 'launch')
     
     urdf_path = os.path.join(get_package_share_path('greenhouse_robot_description'),
         'urdf',
@@ -28,17 +28,17 @@ def generate_launch_description():
          'worlds',
          'greenhouse_bell.sdf')
     
-    # nav2_bringup_launch_path = os.path.join(
-    #     get_package_share_directory('nav2_bringup'),
-    #     'launch',
-    #     'bringup_launch.py'
-    # )
+    nav2_bringup_launch_path = os.path.join(
+         get_package_share_directory('nav2_bringup'),
+         'launch',
+         'bringup_launch.py'
+    )
 
-    # map_path = os.path.join(
-    #     get_package_share_directory('greenhouse_robot_bringup'),
-    #     'maps',
-    #     'my_map_1.yaml'
-    # )
+    map_path = os.path.join(
+         get_package_share_directory('greenhouse_robot_bringup'),
+         'maps',
+         'greenhouse_map.yaml'
+    )
 
 
     robot_description = ParameterValue(Command(['xacro ', urdf_path]), value_type=str)
@@ -51,7 +51,7 @@ def generate_launch_description():
     gz_sim_launch_path = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             gz_launch_path,
-            "/ign_gazebo.launch.py"
+            "/gz_sim.launch.py"
         ]), launch_arguments={'gz_args' : f'{gz_world_path} -r'}.items()
     )
 
@@ -63,9 +63,14 @@ def generate_launch_description():
     # )
 
     spawn_robot_node = Node(
-        package="ros_ign_gazebo",
+        package="ros_gz_sim",
         executable="create",
-        arguments=['-topic', '/robot_description']
+        arguments=['-topic', '/robot_description',
+                   '-name', 'greenhouse_bot',
+                   '-x', '0.0',
+                   '-y', '-7.0',
+                   '-z', '0.0',
+                   '-Y', '1.57']
     )
 
     rviz2_node = Node(
@@ -85,21 +90,26 @@ def generate_launch_description():
     #     package="greenhouse_robot_navigation",
     #     executable="nav2_test"
     # )
+
+    nav2_test_node = Node(
+        package="greenhouse_robot_navigation",
+        executable="routine_test"
+    )
     
-    # nav2_bringup_launch = IncludeLaunchDescription(
-    #     PythonLaunchDescriptionSource(nav2_bringup_launch_path),
-    #     launch_arguments={
-    #         'use_sim_time': 'True',
-    #         'map': map_path
-    #     }.items()
-    # )
+    nav2_bringup_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(nav2_bringup_launch_path),
+        launch_arguments={
+            'use_sim_time': 'True',
+            'map': map_path
+        }.items()
+    )
 
     return LaunchDescription([
         robot_state_publisher_node,
         gz_sim_launch_path,
-        spawn_robot_node,
         gz_bridge_node,
-        #nav2_test_node,
+        spawn_robot_node,
+        nav2_test_node,
         rviz2_node,
-        #nav2_bringup_launch
+        nav2_bringup_launch
     ])
