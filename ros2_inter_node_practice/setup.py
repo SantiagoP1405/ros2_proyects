@@ -17,7 +17,9 @@ setup(
     maintainer_email='santiago_gomez@todo.todo',
     description='TODO: Package description',
     license='TODO: License declaration',
-    tests_require=['pytest'],
+    extras_require={
+        'test': ['pytest'],
+    },
     entry_points={
         'console_scripts': [
             'camera_pub = ros2_inter_node_practice.camera_publisher:main',
