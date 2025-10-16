@@ -1,11 +1,11 @@
 from launch import LaunchDescription
-from launch_ros.actions import Node # type: ignore
-from launch.actions import IncludeLaunchDescription #type: ignore
-from launch.launch_description_sources import PythonLaunchDescriptionSource # type: ignore
-from launch_ros.descriptions import ParameterValue # type: ignore
-from launch.substitutions import Command # type: ignore
+from launch_ros.actions import Node  # type: ignore
+from launch.actions import IncludeLaunchDescription  # type: ignore
+from launch.launch_description_sources import PythonLaunchDescriptionSource  # type: ignore
+from launch_ros.descriptions import ParameterValue  # type: ignore
+from launch.substitutions import Command  # type: ignore
 import os
-from ament_index_python.packages import get_package_share_path, get_package_share_directory # type: ignore
+from ament_index_python.packages import get_package_share_path, get_package_share_directory  # type: ignore
 
 def generate_launch_description():
     gz_launch_path = os.path.join(get_package_share_directory('ros_ign_gazebo'), 'launch')
@@ -39,7 +39,6 @@ def generate_launch_description():
         'maps',
         'my_map_1.yaml'
     )
-
 
     robot_description = ParameterValue(Command(['xacro ', urdf_path]), value_type=str)
     robot_state_publisher_node = Node(
@@ -87,6 +86,19 @@ def generate_launch_description():
         }.items()
     )
 
+    # Static transform publishers
+    static_transform_publisher_map_to_odom = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        arguments=['0', '0', '0', '0', '0', '0', 'map', 'odom']
+    )
+
+    static_transform_publisher_odom_to_base = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        arguments=['0', '0', '0', '0', '0', '0', 'odom', 'base_footprint']
+    )
+
     return LaunchDescription([
         robot_state_publisher_node,
         gz_sim_launch_path,
@@ -94,5 +106,5 @@ def generate_launch_description():
         gz_bridge_node,
         nav2_test_node,
         rviz2_node,
-        nav2_bringup_launch
+        nav2_bringup_launch,
     ])

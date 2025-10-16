@@ -1,4 +1,4 @@
-<sdf version='1.10'>
+<sdf version='1.9'>
   <world name='empty'>
     <physics name='1ms' type='ignored'>
       <max_step_size>0.001</max_step_size>
@@ -197,10 +197,10 @@
         </inertial>
         <collision name='cone_collision'>
           <geometry>
-            <cone>
+            <cylinder>
               <radius>0.5</radius>
               <length>1</length>
-            </cone>
+            </cylinder>
           </geometry>
           <surface>
             <friction>
