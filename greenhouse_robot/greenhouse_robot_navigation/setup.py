@@ -12,8 +12,6 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        (os.path.join('share', package_name, 'params'), 
-         glob('params/*.yaml')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -21,9 +19,7 @@ setup(
     maintainer_email='santiago_gomez@todo.todo',
     description='TODO: Package description',
     license='Apache-2.0',
-    extras_require={
-        'test': ['pytest'],
-    },
+    tests_require=['pytest'],
     entry_points={
         'console_scripts': [
             'nav2_test = greenhouse_robot_navigation.nav2_test:main',
